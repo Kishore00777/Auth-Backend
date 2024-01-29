@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+require('dotenv').config();
+
 const AuthRoutes = require("./Routes/AuthRoutes");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -16,8 +18,7 @@ app.use(cors());
 
 app.use("/api/auth", AuthRoutes); // importing routes
 
-mongoose
-  .connect(url)
+mongoose.connect(process.env.MONGODB_URI)
 
   .then(() => {
     console.log("Connected to MongoDB");
