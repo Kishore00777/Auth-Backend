@@ -7,6 +7,8 @@ const cors = require("cors");
 
 dotenv.config(); // .env file
 const port = 8888;
+const url =
+  "mongodb+srv://kishoremurgan0077:bO2EyEAZtlxK5JnX@cluster0.29k33hr.mongodb.net/?retryWrites=true&w=majority";
 const app = express();
 // app.use(express.json());   // middleware
 app.use(bodyParser.json());
@@ -15,15 +17,8 @@ app.use(cors());
 app.use("/api/auth", AuthRoutes); // importing routes
 
 mongoose
-  .connect(
-    process.env.DB_CONNECTION_STRING
-    //     {
-    //     useNewUrlParser: true,
-    //     useUnifiedTopology: true,
-    //     // useCreateIndex: true,
-    //   }
-  )
-  
+  .connect(url)
+
   .then(() => {
     console.log("Connected to MongoDB");
   })
