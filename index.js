@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 dotenv.config(); // .env file
-const port = process.env.port;
+const port = 8888;
 const app = express();
 // app.use(express.json());   // middleware
 app.use(bodyParser.json());
@@ -15,14 +15,8 @@ app.use(cors());
 app.use("/api/auth", AuthRoutes); // importing routes
 
 mongoose
-  .connect(
-    process.env.DB_CONNECTION_STRING
-    //     {
-    //     useNewUrlParser: true,
-    //     useUnifiedTopology: true,
-    //     // useCreateIndex: true,
-    //   }
-  )
+  .connect("mongodb://localhost:27017/mydatabase")
+
   .then(() => {
     console.log("Connected to MongoDB");
   })
