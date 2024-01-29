@@ -15,8 +15,15 @@ app.use(cors());
 app.use("/api/auth", AuthRoutes); // importing routes
 
 mongoose
-  .connect("mongodb://localhost:27017/mydatabase")
-
+  .connect(
+    process.env.DB_CONNECTION_STRING
+    //     {
+    //     useNewUrlParser: true,
+    //     useUnifiedTopology: true,
+    //     // useCreateIndex: true,
+    //   }
+  )
+  
   .then(() => {
     console.log("Connected to MongoDB");
   })
